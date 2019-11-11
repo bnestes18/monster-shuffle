@@ -25,6 +25,12 @@
 			padding: 1em;
 		}
 
+		button {
+			border: transparent;
+			background: #fff;
+			cursor: pointer;
+		}
+
 		/**
 		 * Make sure images scale
 		 */
@@ -104,7 +110,7 @@
 			let doorImgs = '<div class="row">' + monsters.map(function (monster) {
 
 						return '<div class="grid" aria-live="polite">' +
-									'<a data-image="' + monster +'" role="button" href="#"><img title="Click door to reveal the monster" alt="Picture of a door"' + 'src="img/door.svg"' + '/></a>' +
+									'<button data-image="' + monster +'"><img title="Click door to reveal the monster" alt="Picture of a door"' + 'src="img/door.svg"' + '/></button>' +
 							   '</div>'
 								}).join('') +
 
@@ -113,11 +119,11 @@
 
 			// Reveals the monster behind the door
 			let revealMonster = function (e) {
-				let aTag = e.target.closest('[data-image]');
-				if (aTag) {
-					let monsterImg = aTag.getAttribute('data-image');
-					aTag.innerHTML = '<img alt="Picture of a monster"' + 'src="img/' + monsterImg + '.svg"' + '/>';
-				} else return; // Bail if clicked item is not an anchor tag
+				let buttonTag = e.target.closest('[data-image]');
+				if (buttonTag) {
+					let monsterImg = buttonTag.getAttribute('data-image');
+					buttonTag.innerHTML = '<img alt="Picture of a monster"' + 'src="img/' + monsterImg + '.svg"' + '/>';
+				} else return; // Bail if clicked item is not a button tag
 			}
 
 			// Display door images in each div and inject into DOM
