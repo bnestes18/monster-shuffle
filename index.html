@@ -130,7 +130,7 @@
 			app.innerHTML = '<p>Click or press Enter to reveal a monster behind the chosen door.</p>' +
 							'<p><strong>Be careful not to click on a sock!</strong></p>' + doorImgs;
 
-			document.addEventListener('click', revealMonster, false); // Reveals the monster on click event
+			window.addEventListener('click', revealMonster, false); // Reveals the monster on click event
 
 
 		}(document))
