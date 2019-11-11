@@ -122,7 +122,7 @@
 				let buttonTag = e.target.closest('[data-image]');
 				if (buttonTag) {
 					let monsterImg = buttonTag.getAttribute('data-image');
-					buttonTag.innerHTML = '<img alt="Picture of a monster"' + 'src="img/' + monsterImg + '.svg"' + '/>';
+					buttonTag.parentNode.innerHTML = '<img alt="Picture of a monster"' + 'src="img/' + monsterImg + '.svg"' + '/>';
 				} else return; // Bail if clicked item is not a button tag
 			}
 
@@ -130,7 +130,7 @@
 			app.innerHTML = '<p>Click or press Enter to reveal a monster behind the chosen door.</p>' +
 							'<p><strong>Be careful not to click on a sock!</strong></p>' + doorImgs;
 
-			window.addEventListener('click', revealMonster); // Reveals the monster on click event
+			document.addEventListener('click', revealMonster, false); // Reveals the monster on click event
 
 
 		}(document))
