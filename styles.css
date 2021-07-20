@@ -1,45 +1,21 @@
-body {
-    margin: 1em auto;
-    text-align: center;
-    max-width: 40em;
-    width: 88%;
-}
 /**
-    * A simple grid layout
-    */
-.row {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    text-align: center;
-}
-.grid {
-    min-height: 6em;
-    padding: 1em;
-}
-button {
-    border: transparent;
-    background: #fff;
-    cursor: pointer;
-}
-#reset {
-    background: indigo;
-    border: black;
-    border-radius: 3px;
-    color: #fff;
-    display: block;
-    font-weight: 600;
-    margin: 30px auto;
-    padding: 5px;
-}
-/**
-    * Make sure images scale
-    */
-img {
-    height: auto;
-    max-width: 100%;
+ * A simple grid layout
+ */
+ .row {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	text-align: center;
 }
 
-.outcome-msg {
-    margin: auto;
-    text-align: center;
+.grid {
+	min-height: 6em;
+	padding: 1em;
+}
+
+/**
+ * Make sure images scale
+ */
+img {
+	height: auto;
+	max-width: 100%;
 }
