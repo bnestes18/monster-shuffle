@@ -2,18 +2,54 @@
 let app = document.querySelector('#app');
 let grids = Array.prototype.slice.call(document.querySelectorAll('.grid'));
 let monsters = [
-	'monster1',
-	'monster2',
-	'monster3',
-	'monster4',
-	'monster5',
-	'monster6',
-	'monster7',
-	'monster8',
-	'monster9',
-	'monster10',
-	'monster11',
-	'sock'
+	{
+		name: 'monster1',
+		alt: 'A yellow monster with a curly nose'
+	},
+	{
+		name: 'monster2',
+		alt: 'A yellow monster with a wide head, one eye, and an underbite'
+	},
+	{
+		name: 'monster3',
+		alt: 'A green monster with eyes on stalks and a mouth at the top of its head'
+	},
+	{
+		name: 'monster4',
+		alt: 'A red monster with horns, four eyes, and no legs'
+	},
+	{
+		name: 'monster5',
+		alt: 'A green monster with three horns on each side of its head, one eye, and a sad look on its face'
+	},
+	{
+		name: 'monster6',
+		alt: 'A green, triangle-shaped monster with sharp teeth, walking upside-down on its hands'
+	},
+	{
+		name: 'monster7',
+		alt: 'A purple monster with a single, sad looking eye and tentacles for arms'
+	},
+	{
+		name: 'monster8',
+		alt: 'A purple, oval-shaped monster with one eye and no arms or legs'
+	},
+	{
+		name: 'monster9',
+		alt: 'A blue, insect-like monster, with bug eyes, three body sections, and a pair of wings'
+	},
+	{
+		name: 'monster10',
+		alt: 'A blue monster with lopsided eyes on stalks and long, sharp teeth'
+	},
+	{
+		name: 'monster11',
+		alt: 'A furry gray monster with long arms and a happy face'
+	},
+	{
+		name: 'sock',
+		alt: 'A pair of athletic socks'
+	}
 ];
 
 // FUNCTIONS
@@ -44,12 +80,18 @@ function shuffle (array) {
 
 }
 
-// Shuffle and cache the monsters
-let monsterImgs = shuffle(monsters.map(function(monster) {
-    return monster === 'sock' ? `<img src="./img/${monster}.svg" title="A pair of white socks"></img>` : `<img src="./img/${monster}.svg" title="${monster} from Monsters, Inc."></img>`;
-}))
+// Shuffle the monsters array
+shuffle(monsters);
 
-// Render the monsters to the DOM (in each cell)
-grids.map(function(grid) {
-    grid.innerHTML = monsterImgs[grid.textContent - 1];
-})
+// Render the template of monsters
+app.innerHTML = `
+                <h1>Monsters Inc!</h1>
+                <div class="row">
+                    ${monsters.map(function(monster) {
+                        return `<div class="grid">
+                                    <img src="./img/${monster.name}.svg" alt="${monster.alt}">
+                                </div>`
+                    }).join('')}
+                </div>
+
+`
