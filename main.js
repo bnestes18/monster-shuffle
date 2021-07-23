@@ -81,12 +81,18 @@ function shuffle (array) {
 }
 
 function revealMonster(e) {
-    if (e.target.closest('a')) {
-        let gridEl = e.target.closest('.grid');
-        gridEl.innerHTML = `<img src="./img/${e.target.closest('a').id}.svg" alt="${monsters[e.target.parentNode.attributes[0].value].alt}">`
-    }
-        
+    let aTag = e.target.closest('a');
+    if (!aTag) return;
+    let monster = monsters[aTag.getAttribute('data-monster')];
+    if (!monster) return;
     
+    // Create the image element with monster img and alt text
+    let img = document.createElement('img');
+    img.src = `./img/${monster.name}.svg`;
+    img.alt = monster.alt;
+    
+    // Replace the a tag with img tag
+    aTag.replaceWith(img);  
 }
 
 // Shuffle the monsters array
