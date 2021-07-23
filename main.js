@@ -80,6 +80,15 @@ function shuffle (array) {
 
 }
 
+function revealMonster(e) {
+    if (e.target.closest('a')) {
+        let gridEl = e.target.closest('.grid');
+        gridEl.innerHTML = `<img src="./img/${e.target.closest('a').id}.svg" alt="${monsters[e.target.parentNode.attributes[0].value].alt}">`
+    }
+        
+    
+}
+
 // Shuffle the monsters array
 shuffle(monsters);
 
@@ -87,11 +96,14 @@ shuffle(monsters);
 app.innerHTML = `
                 <h1>Monsters Inc!</h1>
                 <div class="row">
-                    ${monsters.map(function(monster) {
+                    ${monsters.map(function(monster, index) {
+                        
                         return `<div class="grid">
-                                    <img src="./img/${monster.name}.svg" alt="${monster.alt}">
+                                    <a data-monster="${index}" id="${monster.name}" role=button href="#"><img src="./img/door.svg" alt="An ordinary brown door"></a>
                                 </div>`
                     }).join('')}
                 </div>
 
 `
+
+document.addEventListener('click', revealMonster)
