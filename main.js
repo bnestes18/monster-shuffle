@@ -104,8 +104,8 @@ app.innerHTML = `
                 <div class="row">
                     ${monsters.map(function(monster, index) {
                         
-                        return `<div class="grid">
-                                    <button data-monster="${index}" id="${monster.name}"><img src="./img/door.svg" alt="An ordinary brown door"></button>
+                        return `<div class="grid" aria-live="polite">
+                                    <button data-monster="${index}" id="${monster.name}"><img src="./img/door.svg" alt="An ordinary brown door" title="Door"></button>
                                 </div>`
                     }).join('')}
                 </div>
