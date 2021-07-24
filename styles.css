@@ -19,3 +19,8 @@ img {
 	height: auto;
 	max-width: 100%;
 }
+
+button {
+    background-color: white;
+    border: none;
+}
