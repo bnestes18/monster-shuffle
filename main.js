@@ -81,18 +81,18 @@ function shuffle (array) {
 }
 
 function revealMonster(e) {
-    let aTag = e.target.closest('a');
-    if (!aTag) return;
-    let monster = monsters[aTag.getAttribute('data-monster')];
+    let btn = e.target.closest('button');
+    if (!btn) return;
+    let monster = monsters[btn.getAttribute('data-monster')];
     if (!monster) return;
-    
+
     // Create the image element with monster img and alt text
     let img = document.createElement('img');
     img.src = `./img/${monster.name}.svg`;
     img.alt = monster.alt;
     
     // Replace the a tag with img tag
-    aTag.replaceWith(img);  
+    btn.replaceWith(img);  
 }
 
 // Shuffle the monsters array
@@ -105,7 +105,7 @@ app.innerHTML = `
                     ${monsters.map(function(monster, index) {
                         
                         return `<div class="grid">
-                                    <a data-monster="${index}" id="${monster.name}" role=button href="#"><img src="./img/door.svg" alt="An ordinary brown door"></a>
+                                    <button data-monster="${index}" id="${monster.name}"><img src="./img/door.svg" alt="An ordinary brown door"></button>
                                 </div>`
                     }).join('')}
                 </div>
