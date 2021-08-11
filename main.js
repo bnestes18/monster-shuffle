@@ -1,6 +1,5 @@
 // VARIABLES
 let app = document.querySelector('#app');
-let grids = Array.prototype.slice.call(document.querySelectorAll('.grid'));
 let monsters = [
 	{
 		name: 'monster1',
@@ -79,9 +78,10 @@ function shuffle (array) {
 	return array;
 
 }
+let count = 0;
 
-function revealMonster(e) {
-    let btn = e.target.closest('button');
+function clickHandler(e) {
+    let btn = e.target.closest('a');
     if (!btn) return;
     let monster = monsters[btn.getAttribute('data-monster')];
     if (!monster) return;
@@ -93,23 +93,40 @@ function revealMonster(e) {
     
     // Replace the a tag with img tag
     btn.replaceWith(img);  
+
+    if (monster.name == 'sock') {
+		window.location.href = "loss.html";
+		return;
+	}
+	
+	count++;
+
+    if (count === monsters.length - 1) {
+		window.location.href = "won.html";
+		return;
+    }
+}
+
+function playGame() {
+
+    app.innerHTML = `<h1>Monsters Inc!</h1>
+                        <h2>Game Instructions: <span>Click on each door to reveal a monster. If you find a sock before finding all 11 monsters, you lose the game!</span></h2>
+                        
+                        <div class="row">
+                            ${monsters.map(function(monster, index) {
+                                
+                                return `<div class="grid" aria-live="polite">
+                                            <a role="button" data-monster="${index}"><img src="./img/door.svg" alt="An ordinary brown door" title="Door"></a>
+                                        </div>`
+                            }).join('')}
+                        </div>
+            `
 }
 
 // Shuffle the monsters array
 shuffle(monsters);
 
-// Render the template of monsters
-app.innerHTML = `
-                <h1>Monsters Inc!</h1>
-                <div class="row">
-                    ${monsters.map(function(monster, index) {
-                        
-                        return `<div class="grid" aria-live="polite">
-                                    <button data-monster="${index}" id="${monster.name}"><img src="./img/door.svg" alt="An ordinary brown door" title="Door"></button>
-                                </div>`
-                    }).join('')}
-                </div>
+// Render the template of monsters on initial page load
+playGame();
 
-`
-
-document.addEventListener('click', revealMonster)
+document.addEventListener('click', clickHandler);
